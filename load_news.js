@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
    try {
      const response = await fetch(API_URL);
      const data = await response.json();
-     console.log(`Esto son las noticias ${data[0].link}`)
+    
      // Filtrar las noticias que tengan el tag "SaberUH" y limitar a 3
      const saberUHNews = data
      .slice(0, 3); // Limitar a 3 noticias
@@ -59,14 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     for (const toDownload of newsData) {
       const noticeURL=toDownload._links.self[0].href
-      console.log(`URL de la noticia: ${noticeURL}`)
+      
       const response= await fetch(noticeURL)
       const newsItem = await response.json()
-      console.log(`Esta es la pagina ${newsItem._links}`)
+      
       let imageUrl = "";
       if (newsItem._links && newsItem._links["wp:featuredmedia"]) {
         const featuredMediaId = newsItem._links["wp:featuredmedia"][0].href;
-        console.log(`la url de la imagen ${featuredMediaId}`)
+        
         imageUrl = await getImage(featuredMediaId);
       }
 
